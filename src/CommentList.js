@@ -1,44 +1,39 @@
 import React, {Component} from 'react'
 import Comment from './Comment'
 
-export default class CommentList extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            isOpen: false
-        }
-
-        this.toggleOpen = this.toggleOpen.bind(this)
+class CommentList extends Component {
+    state = {
+        isOpen: false
     }
 
     render() {
-        const {isOpen} = this.state
-
+        const text = this.state.isOpen ? 'hide comments' : 'show comments'
         return (
             <div>
-                <button onClick = {this.toggleOpen}>
-                    {isOpen ? 'close' : 'open'}
-                </button>
-                {this.getComments()}
+                <button onClick = {this.toggleOpen}>{text}</button>
+                {this.getBody()}
             </div>
         )
     }
 
-    toggleOpen() {
+    getBody() {
+        if (!this.state.isOpen) return null
+
+        const {comments} = this.props
+        if (!comments || !comments.length) return <p>no comments yet</p>
+
+        return (
+            <ul>
+                {comments.map((comment) => <li key = {comment.id}><Comment comment = {comment} /></li>)}
+            </ul>
+        )
+    }
+
+    toggleOpen = () => {
         this.setState({
             isOpen: !this.state.isOpen
         })
     }
-
-    getComments() {
-        const {isOpen} = this.state
-        const {comments} = this.props
-
-        return (
-            <ul>
-                {isOpen && comments ? comments.map((comment) => <Comment key = {comment.id} comment = {comment} />) : null}
-            </ul>
-        )
-    }
 }
+
+export default CommentList

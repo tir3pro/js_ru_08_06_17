@@ -5,9 +5,8 @@ import React from 'react'
 
 export default function Comment({comment}) {
     return (
-        <li>
-            <h3>{comment.user}</h3>
-            <p>{comment.text}</p>
-        </li>
+        <div>
+            <p>{comment.text} <b> by {comment.user}</b></p>
+        </div>
     )
 }
