@@ -1,7 +1,17 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import CommentList from './CommentList'
+import toggleOpen from '../decorators/toggleOpen'
 
 export default class Article extends Component {
+    static propTypes = {
+        article: PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+            text: PropTypes.string.isRequired
+        }).isRequired
+    }
+
     constructor(props) {
         super(props)
 
@@ -22,7 +32,6 @@ export default class Article extends Component {
                     {isOpen ? 'close' : 'open'}
                 </button>
                 {this.getBody()}
-
             </div>
         )
     }
