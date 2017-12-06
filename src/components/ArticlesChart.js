@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 class ArticlesChart extends Component {
     static propTypes = {
-
+        articles: React.PropTypes.array.isRequired
     };
 
     componentDidMount() {
