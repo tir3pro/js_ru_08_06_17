@@ -3,31 +3,30 @@ import PropTypes from 'prop-types'
 import Article from './Article'
 import accordeon from '../decorators/accordeon'
 
-function ArticleList({articles, openArticleId, toggleOpenArticle}) {
-    const articleElements = articles.map((article) => <li key = {article.id}>
-        <Article
-            article = {article}
-            isOpen = {article.id === openArticleId}
-            toggleOpen = {() => {
-                toggleOpenArticle(article.id)
-            }}
-        />
-    </li>)
+class ArticleList extends Component {
+    static propTypes = {
+        articles: PropTypes.array.isRequired,
+        //from accordeon
+        openItemId: PropTypes.string,
+        toggleOpenItem: PropTypes.func.isRequired
+    }
 
-    return (
-        <ul>
-            {articleElements}
-        </ul>
-    )
-}
+    render() {
+        const { articles, openItemId, toggleOpenItem } = this.props
+        const articleElements = articles.map((article) => <li key = {article.id}>
+            <Article
+                article = {article}
+                isOpen = {article.id === openItemId}
+                toggleOpen = {toggleOpenItem(article.id)}
+            />
+        </li>)
 
-ArticleList.propTypes = {
-    articles: PropTypes.array.isRequired,
-    openArticleId: React.PropTypes.oneOfType([
-        React.PropTypes.bool,
-        React.PropTypes.string
-    ]),
-    toggleOpenArticle: React.PropTypes.func.isRequired
+        return (
+            <ul>
+                {articleElements}
+            </ul>
+        )
+    }
 }
 
 export default accordeon(ArticleList)

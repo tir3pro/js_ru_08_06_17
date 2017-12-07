@@ -5,18 +5,16 @@ import React, {Component as ReactComponent} from 'react'
 
 export default (OriginalComponent) => class WrappedComponent extends ReactComponent {
     state = {
-        openArticleId: null
+        openItemId: null
     }
 
     render() {
-        return <OriginalComponent {...this.props} {...this.state} toggleOpenArticle = {this.toggleOpenArticle.bind(this)} />
+        return <OriginalComponent {...this.props} openItemId = {this.state.openItemId} toggleOpenItem = {this.toggleOpenItem} />
     }
 
-    toggleOpenArticle(openArticleId) {
-        if (this.state.openArticleId === openArticleId) {
-            this.setState({openArticleId: null})
-        } else {
-            this.setState({openArticleId})
-        }
+    toggleOpenItem = (openItemId) => () => {
+        this.setState({
+            openItemId: openItemId === this.state.openItemId ? null : openItemId
+        })
     }
 }

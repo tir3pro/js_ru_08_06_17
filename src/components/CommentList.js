@@ -15,9 +15,10 @@ function CommentList({comments = [], isOpen, toggleOpen}) {
 }
 
 CommentList.propTypes = {
-    comments: React.PropTypes.array.isRequired,
-    isOpen: React.PropTypes.bool.isRequired,
-    toggleOpen: React.PropTypes.func.isRequired
+    comments: PropTypes.array,
+    //from toggleOpen decorator
+    isOpen: PropTypes.bool,
+    toggleOpen: PropTypes.func
 }
 
 function getBody({comments, isOpen}) {
