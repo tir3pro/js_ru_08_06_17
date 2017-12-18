@@ -12,7 +12,7 @@ import 'react-select/dist/react-select.css';
 
 class App extends Component {
     static propTypes = {
-        articles: PropTypes.array.isRequired
+        articles: PropTypes.array
     };
 
     render() {
@@ -20,13 +20,11 @@ class App extends Component {
             <div>
                 <Counter />
                 <UserForm />
-                <Filters articles = {this.props.articles} />
-                <ArticleList articles = {this.props.articles} />
-                <ArticlesChart articles = {this.props.articles} />
+                <Filters articles = {[]} />
+                <ArticleList />
             </div>
         )
     }
-
 }
 
 export default App
