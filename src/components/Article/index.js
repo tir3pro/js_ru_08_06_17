@@ -18,13 +18,9 @@ class Article extends PureComponent {
         toggleOpen: PropTypes.func
     }
 
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     return nextProps.isOpen !== this.props.isOpen
-    // }
-
     render() {
         const {article, isOpen, toggleOpen} = this.props;
-        console.log('---', 'update article')
+
         return (
             <div ref = {this.setContainerRef}>
                 <h3>{article.title}</h3>
@@ -47,12 +43,10 @@ class Article extends PureComponent {
     handleDelete = () => {
         const {deleteArticle, article} = this.props
         deleteArticle(article.id)
-        console.log('___deleting')
     }
 
     setContainerRef = ref => {
         this.container = ref;
-        //console.log('---', ref)
     }
 
     getBody() {
@@ -71,4 +65,4 @@ class Article extends PureComponent {
     }
 }
 
-export default connect(null, {deleteArticle})(Article)
+export default connect(null, { deleteArticle })(Article)
