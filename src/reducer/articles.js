@@ -1,7 +1,7 @@
 /**
  * Created by Yevhen Kryvsun on 12/18/2017.
  */
-import {articles as defaultArticles} from '../fixtures'
+import {normalizedArticles as defaultArticles} from '../fixtures'
 import {DELETE_ARTICLE} from '../constants'
 
 export default (articlesState = defaultArticles, action) => {
